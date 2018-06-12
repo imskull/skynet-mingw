@@ -55,9 +55,9 @@ SKYNET_SRC = skynet_handle.c skynet_module.c skynet_mq.c \
 
 all : \
 	$(LUA_STATICLIB) \
-   	$(SKYNET_BUILD_PATH)/platform.dll \
-  	$(SKYNET_BUILD_PATH)/skynet.dll \
-  	$(SKYNET_BUILD_PATH)/skynet.exe \
+		$(SKYNET_BUILD_PATH)/platform.dll \
+		$(SKYNET_BUILD_PATH)/skynet.dll \
+		$(SKYNET_BUILD_PATH)/skynet.exe \
 	$(foreach v, $(CSERVICE), $(CSERVICE_PATH)/$(v).so) \
 	$(foreach v, $(LUA_CLIB), $(LUA_CLIB_PATH)/$(v).so)
 
@@ -68,7 +68,7 @@ $(SKYNET_BUILD_PATH)/skynet.dll : $(foreach v, $(SKYNET_SRC), skynet-src/$(v)) |
 	$(CC) -includeplatform.h $(CFLAGS) $(SHARED) -o $@ $^ -Iskynet-src $(LDFLAGS) $(SKYNET_LIBS) $(SKYNET_DEFINES)
 
 $(SKYNET_BUILD_PATH)/skynet.exe : $(foreach v, $(SKYNET_EXE_SRC), skynet-src/$(v))  | $(SKYNET_BUILD_PATH)/skynet.dll
-	$(CC) -includeplatform.h $(CFLAGS) -o $@ $^ -Iskynet-src $(EXPORT) $(LDFLAGS) $(SHAREDLDFLAGS) $(SKYNET_DEFINES)	
+	$(CC) -includeplatform.h $(CFLAGS) -o $@ $^ -Iskynet-src $(EXPORT) $(LDFLAGS) $(SHAREDLDFLAGS) $(SKYNET_DEFINES)
 
 # lua
 $(LUA_STATICLIB) :
@@ -97,7 +97,7 @@ $(LUA_CLIB_PATH)/md5.so : 3rd/lua-md5/md5.c 3rd/lua-md5/md5lib.c 3rd/lua-md5/com
 	$(CC) $(CFLAGS) $(SHARED) -I3rd/lua-md5 $^ -o $@  $(SHAREDLDFLAGS)
 
 $(LUA_CLIB_PATH)/clientsocket.so : lualib-src/lua-clientsocket.c | $(LUA_CLIB_PATH)
-	$(CC) -includeplatform.h $(CFLAGS) $(SHARED) $^ -o $@ -lpthread  $(SHAREDLDFLAGS)
+	$(CC) -includeplatform.h $(CFLAGS) $(SHARED) $^ -o $(LUA_CLIB_PATH)/client.so -lpthread  $(SHAREDLDFLAGS)
 
 $(LUA_CLIB_PATH)/sproto.so : lualib-src/sproto/sproto.c lualib-src/sproto/lsproto.c | $(LUA_CLIB_PATH)
 	$(CC) $(CFLAGS) $(SHARED) -Ilualib-src/sproto $^ -o $@  $(SHAREDLDFLAGS) 
