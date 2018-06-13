@@ -2,6 +2,10 @@
 
 The purpose of this revision is for **LEARNING** skynet on **WINDOWS** with **VSCODE** ! it should not be used in production.
 
+Preview:
+
+![](docs/demo-screenshot.png)
+
 ## vscode configuration
 
 
@@ -32,7 +36,7 @@ The purpose of this revision is for **LEARNING** skynet on **WINDOWS** with **VS
     }
     ```
         
-    You should replace `[your-skynet-mingw-folder]` with your local path.
+    You should replace `your-skynet-mingw-folder` with your local path.
 
 ## Debug tricks
 
