@@ -1,3 +1,50 @@
+# About this revision of skynet-mingw
+
+The purpose of this revision is for **LEARNING** skynet on **WINDOWS** with **VSCODE** ! it should not be used in production.
+
+## vscode configuration
+
+
+1. Install **C/C++** extension from vscode market
+2. Add source code folders as you want
+3. launch.json:
+
+    ```
+    {
+         "name": "(gdb) Launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "your-skynet-mingw-folder\\skynet.exe",
+        "args": ["examples\\config"],
+        "stopAtEntry": false,
+        "cwd": "your-skynet-mingw-folder",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "c:\\MinGW\\bin\\gdb.exe",
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }
+        ]
+    }
+    ```
+        
+    You should replace `[your-skynet-mingw-folder]` with your local path.
+
+## Debug tricks
+
+- New breakpoints wont work when the app is already running, so set it up BEFORE you press F5
+
+## Changes
+
+- Disable gcc optimization for easy debugging.
+
+
+> Original README starting below.
+
 # 关于skynet-mingw [![Build status](https://ci.appveyor.com/api/projects/status/9j45lldyxmfdau3r?svg=true)](https://ci.appveyor.com/project/dpull/skynet-mingw)
 
 [skynet-mingw](https://github.com/dpull/skynet-mingw) 是[skynet](https://github.com/cloudwu/skynet)的windows平台的实现。其主要特点是：
